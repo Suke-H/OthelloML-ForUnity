@@ -1,4 +1,4 @@
-using Othello.Input;
+using Othello.InputSystem;
 
 namespace Othello.Core
 {

@@ -1,4 +1,4 @@
-namespace Othello.Input
+namespace Othello.InputSystem
 {
     public class InputState
     {

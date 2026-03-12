@@ -1,5 +1,5 @@
 using Othello.Draw;
-using Othello.Input;
+using Othello.InputSystem;
 using Othello.Update;
 using UnityEngine;
 
@@ -25,6 +25,9 @@ namespace Othello.Core
             _envState   = EnvState.CreateInitial();
             _inputState = new InputState();
 
+            if (_inputMode == InputMode.GUI)
+                _guiInput.SetCurrentPlayer(_envState.CurrentTurn);
+
             var legal = UpdateSystem.GetLegalMoves(_envState);
             Debug.Log($"[GameLoop] 開始。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(legal)}");
         }
@@ -40,6 +43,8 @@ namespace Othello.Core
                 if (next != null)
                 {
                     _envState = next;
+                    if (_inputMode == InputMode.GUI)
+                        _guiInput.SetCurrentPlayer(_envState.CurrentTurn);
                     var legal = UpdateSystem.GetLegalMoves(_envState);
                     Debug.Log($"[GameLoop] 着手成功。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(legal)}");
                 }

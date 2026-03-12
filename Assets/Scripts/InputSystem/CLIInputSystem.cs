@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Othello.Input
+namespace Othello.InputSystem
 {
     public class CLIInputSystem : MonoBehaviour, IInputSystem
     {
