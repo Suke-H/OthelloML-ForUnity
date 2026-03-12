@@ -46,6 +46,6 @@ namespace Othello.Draw
 
         private Vector3 CellPos(int x, int y) =>
             new Vector3(_boardOrigin.x + x * _cellSize,
-                        _boardOrigin.y + y * _cellSize, 0f);
+                        _boardOrigin.y - y * _cellSize, 0f);
     }
 }
