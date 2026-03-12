@@ -33,8 +33,8 @@ namespace Othello.InputSystem
         // DraggableStone から呼ばれる
         public void OnStoneDropped(Vector3 worldPos)
         {
-            int x = Mathf.FloorToInt((worldPos.x - _boardOrigin.x) / _cellSize);
-            int y = Mathf.FloorToInt((_boardOrigin.y - worldPos.y) / _cellSize);
+            int x = Mathf.RoundToInt((worldPos.x - _boardOrigin.x) / _cellSize);
+            int y = Mathf.RoundToInt((_boardOrigin.y - worldPos.y) / _cellSize);
 
             if (x >= 0 && x < 8 && y >= 0 && y < 8)
             {
