@@ -1,4 +1,4 @@
-namespace Othello.Core
+namespace Othello.States
 {
     public enum Player { Black = 0, White = 1 }
 

@@ -1,6 +1,4 @@
-using Othello.InputSystem;
-
-namespace Othello.Core
+namespace Othello.States
 {
     public sealed class ViewState
     {

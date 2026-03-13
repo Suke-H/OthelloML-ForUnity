@@ -1,7 +1,6 @@
-using Othello.Core;
-using Othello.InputSystem;
+using Othello.States;
 
-namespace Othello.Update
+namespace Othello.Systems
 {
     public static class UpdateSystem
     {

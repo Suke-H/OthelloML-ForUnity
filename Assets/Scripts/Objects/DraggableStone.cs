@@ -1,7 +1,7 @@
-using Othello.InputSystem;
+using Othello.Systems;
 using UnityEngine;
 
-namespace Othello.View
+namespace Othello.Object
 {
     public class DraggableStone : MonoBehaviour
     {

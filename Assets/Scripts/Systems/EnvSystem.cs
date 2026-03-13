@@ -1,7 +1,7 @@
-using Othello.Core;
+using Othello.States;
 using UnityEngine;
 
-namespace Othello.Env
+namespace Othello.Systems
 {
     public static class EnvSystem
     {

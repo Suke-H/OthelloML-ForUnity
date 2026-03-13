@@ -1,8 +1,8 @@
-using Othello.Core;
-using Othello.View;
+using Othello.Object;
+using Othello.States;
 using UnityEngine;
 
-namespace Othello.InputSystem
+namespace Othello.Systems
 {
     public class GUIInputSystem : MonoBehaviour, IInputSystem
     {

@@ -1,7 +1,5 @@
-using Othello.Draw;
-using Othello.Env;
-using Othello.InputSystem;
-using Othello.Update;
+using Othello.States;
+using Othello.Systems;
 using UnityEngine;
 
 namespace Othello.Core
@@ -59,7 +57,7 @@ namespace Othello.Core
 
         private string LegalMovesToString(bool[,] legal)
         {
-            var sb = new System.Text.StringBuilder();
+            var sb = new global::System.Text.StringBuilder();
             for (int x = 0; x < 8; x++)
             for (int y = 0; y < 8; y++)
                 if (legal[x, y]) sb.Append($"{x},{y} ");

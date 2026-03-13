@@ -1,4 +1,6 @@
-namespace Othello.InputSystem
+using Othello.States;
+
+namespace Othello.Systems
 {
     public interface IInputSystem
     {

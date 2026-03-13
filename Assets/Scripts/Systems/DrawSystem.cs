@@ -1,7 +1,7 @@
-using Othello.Core;
+using Othello.States;
 using UnityEngine;
 
-namespace Othello.Draw
+namespace Othello.Systems
 {
     public class DrawSystem : MonoBehaviour
     {
