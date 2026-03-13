@@ -6,21 +6,23 @@ namespace Othello.States
     {
         public const int Size = 8;
 
+        public readonly bool    IsActionSuccess;
         public readonly int[,]  Board;
         public readonly Player  CurrentTurn;
         public readonly bool[,] LegalMoves;
 
-        public EnvState(int[,] board, Player currentTurn, bool[,] legalMoves)
+        public EnvState(bool isActionSuccess, int[,] board, Player currentTurn, bool[,] legalMoves)
         {
-            Board       = board;
-            CurrentTurn = currentTurn;
-            LegalMoves  = legalMoves;
+            IsActionSuccess = isActionSuccess;
+            Board           = board;
+            CurrentTurn     = currentTurn;
+            LegalMoves      = legalMoves;
         }
 
         public EnvState Clone()
         {
             var newBoard = (int[,])Board.Clone();
-            return new EnvState(newBoard, CurrentTurn, LegalMoves);
+            return new EnvState(IsActionSuccess, newBoard, CurrentTurn, LegalMoves);
         }
     }
 }

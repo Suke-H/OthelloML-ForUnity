@@ -18,12 +18,13 @@ namespace Othello.Systems
             board[3, 3] = 2; board[4, 4] = 2;
             board[3, 4] = 1; board[4, 3] = 1;
             var legal = ComputeLegalMoves(board, Player.Black);
-            return new EnvState(board, Player.Black, legal);
+            return new EnvState(isActionSuccess: true, board, Player.Black, legal);
         }
 
         public static EnvState Apply(EnvState state, int x, int y)
         {
-            if (!IsLegal(state, x, y)) return null;
+            if (!IsLegal(state, x, y))
+                return new EnvState(isActionSuccess: false, state.Board, state.CurrentTurn, state.LegalMoves);
 
             var next  = state.Clone();
             int stone = (int)state.CurrentTurn + 1;
@@ -33,7 +34,7 @@ namespace Othello.Systems
 
             var nextTurn  = state.CurrentTurn == Player.Black ? Player.White : Player.Black;
             var nextLegal = ComputeLegalMoves(next.Board, nextTurn);
-            var nextState = new EnvState(next.Board, nextTurn, nextLegal);
+            var nextState = new EnvState(isActionSuccess: true, next.Board, nextTurn, nextLegal);
 
             LogTurn(nextState, x, y);
             return nextState;

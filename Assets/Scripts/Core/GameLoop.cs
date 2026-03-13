@@ -19,8 +19,7 @@ namespace Othello.Core
 
         private void Start()
         {
-            _input      = _inputMode == InputMode.GUI
-                            ? _guiInput : (IInputSystem)_cliInput;
+            _input      = _inputMode == InputMode.GUI ? _guiInput : _cliInput;
             _envState   = EnvSystem.CreateInitial();
             _inputState = new InputState();
 
@@ -37,10 +36,10 @@ namespace Othello.Core
             if (_inputState.ActionConfirmed)
             {
                 Debug.Log($"[GameLoop] アクション ({_inputState.ActionX},{_inputState.ActionY})");
-                var next = EnvSystem.Apply(_envState, _inputState.ActionX, _inputState.ActionY);
-                if (next != null)
+                var nextEnvState = EnvSystem.Apply(_envState, _inputState.ActionX, _inputState.ActionY);
+                _envState = nextEnvState;
+                if (nextEnvState.IsActionSuccess)
                 {
-                    _envState = next;
                     if (_inputMode == InputMode.GUI)
                         _guiInput.SetCurrentPlayer(_envState.CurrentTurn);
                     Debug.Log($"[GameLoop] 着手成功。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(_envState.LegalMoves)}");
