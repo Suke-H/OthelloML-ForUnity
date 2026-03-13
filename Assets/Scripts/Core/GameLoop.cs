@@ -1,4 +1,5 @@
 using Othello.Draw;
+using Othello.Env;
 using Othello.InputSystem;
 using Othello.Update;
 using UnityEngine;
@@ -22,14 +23,13 @@ namespace Othello.Core
         {
             _input      = _inputMode == InputMode.GUI
                             ? _guiInput : (IInputSystem)_cliInput;
-            _envState   = EnvState.CreateInitial();
+            _envState   = EnvSystem.CreateInitial();
             _inputState = new InputState();
 
             if (_inputMode == InputMode.GUI)
                 _guiInput.SetCurrentPlayer(_envState.CurrentTurn);
 
-            var legal = UpdateSystem.GetLegalMoves(_envState);
-            Debug.Log($"[GameLoop] 開始。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(legal)}");
+            Debug.Log($"[GameLoop] 開始。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(_envState.LegalMoves)}");
         }
 
         private void Update()
@@ -39,14 +39,13 @@ namespace Othello.Core
             if (_inputState.ActionConfirmed)
             {
                 Debug.Log($"[GameLoop] アクション ({_inputState.ActionX},{_inputState.ActionY})");
-                var next = UpdateSystem.Apply(_envState, _inputState.ActionX, _inputState.ActionY);
+                var next = EnvSystem.Apply(_envState, _inputState.ActionX, _inputState.ActionY);
                 if (next != null)
                 {
                     _envState = next;
                     if (_inputMode == InputMode.GUI)
                         _guiInput.SetCurrentPlayer(_envState.CurrentTurn);
-                    var legal = UpdateSystem.GetLegalMoves(_envState);
-                    Debug.Log($"[GameLoop] 着手成功。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(legal)}");
+                    Debug.Log($"[GameLoop] 着手成功。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(_envState.LegalMoves)}");
                 }
                 else
                 {
@@ -54,8 +53,7 @@ namespace Othello.Core
                 }
             }
 
-            var legalMoves = UpdateSystem.GetLegalMoves(_envState);
-            var viewState  = new ViewState(_envState, legalMoves, _inputState);
+            var viewState = UpdateSystem.CreateViewState(_envState, _inputState);
             _draw.Render(viewState);
         }
 
