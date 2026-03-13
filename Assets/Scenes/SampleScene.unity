@@ -1217,8 +1217,6 @@ MonoBehaviour:
   _mainCamera: {fileID: 519420031}
   _cellSize: 1
   _boardOrigin: {x: -3.5, y: 3.5}
-  _stonePrefab: {fileID: 1278849268605447640, guid: 0241f553703a5674989729b81236611a, type: 3}
-  _spawnPosition: {x: -5, y: 0, z: 0}
 --- !u!1 &2118477332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1250,7 @@ MonoBehaviour:
   _highlightPrefab: {fileID: 2354624802799528382, guid: f8f7093af1d227045b552ac3886dbde1, type: 3}
   _cellSize: 1
   _boardOrigin: {x: -3.5, y: 3.5}
+  _spawnPosition: {x: -5, y: 0, z: 0}
 --- !u!4 &2118477334
 Transform:
   m_ObjectHideFlags: 0

@@ -24,8 +24,17 @@ namespace Othello.Core
             _inputState = new InputState();
 
             if (_inputMode == InputMode.GUI)
-                _guiInput.SetCurrentPlayer(_envState.CurrentTurn);
+            {
+                _guiInput.Init(_draw.OperationStone);
+                _draw.OperationStone.Init(_guiInput, _draw.SpawnPosition);
+                _draw.Init();
+            }
+            else
+            {
+                _draw.OperationStone.gameObject.SetActive(false);
+            }
 
+            
             Debug.Log($"[GameLoop] 開始。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(_envState.LegalMoves)}");
         }
 
@@ -40,9 +49,9 @@ namespace Othello.Core
                 _envState = nextEnvState;
                 if (nextEnvState.IsActionSuccess)
                 {
-                    if (_inputMode == InputMode.GUI)
-                        _guiInput.SetCurrentPlayer(_envState.CurrentTurn);
                     Debug.Log($"[GameLoop] 着手成功。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(_envState.LegalMoves)}");
+                    var switchViewState = UpdateSystem.CreateViewState(_envState, _inputState);
+                    _draw.RenderForSwitchTurn(switchViewState);
                 }
                 else
                 {

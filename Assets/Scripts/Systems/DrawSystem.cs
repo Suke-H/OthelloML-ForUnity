@@ -1,3 +1,4 @@
+using Othello.Object;
 using Othello.States;
 using UnityEngine;
 
@@ -7,11 +8,23 @@ namespace Othello.Systems
     {
         [SerializeField] private GameObject _stonePrefab;
         [SerializeField] private GameObject _highlightPrefab;
-        [SerializeField] private float      _cellSize = 1f;
+        [SerializeField] private float      _cellSize      = 1f;
         [SerializeField] private Vector2    _boardOrigin;
+        [SerializeField] private Vector3    _spawnPosition = new Vector3(-5f, 0f, 0f);
 
-        private GameObject[,] _stones     = new GameObject[8, 8];
-        private GameObject[,] _highlights = new GameObject[8, 8];
+        private GameObject[,]  _stones     = new GameObject[8, 8];
+        private GameObject[,]  _highlights = new GameObject[8, 8];
+        private SpriteRenderer _operationStoneSr;
+
+        public DraggableStone OperationStone { get; private set; }
+        public Vector3        SpawnPosition  => _spawnPosition;
+
+        private void Awake()
+        {
+            var go = Instantiate(_stonePrefab, _spawnPosition, Quaternion.identity);
+            _operationStoneSr = go.GetComponent<SpriteRenderer>();
+            OperationStone    = go.AddComponent<DraggableStone>();
+        }
 
         public void Render(ViewState view)
         {
@@ -21,6 +34,22 @@ namespace Othello.Systems
                 DrawCell(x, y, view.Board[x, y]);
                 DrawHighlight(x, y, view.LegalMoves[x, y]);
             }
+        }
+
+        public void Init()
+        {
+            SpawnOperationStone(Player.Black);
+        }
+
+        public void RenderForSwitchTurn(ViewState view)
+        {
+            SpawnOperationStone(view.CurrentTurn);
+        }
+
+        private void SpawnOperationStone(Player player)
+        {
+            _operationStoneSr.color = player == Player.Black ? Color.black : Color.white;
+            OperationStone.ResetPosition();
         }
 
         private void DrawCell(int x, int y, int value)

@@ -6,28 +6,18 @@ namespace Othello.Systems
 {
     public class GUIInputSystem : MonoBehaviour, IInputSystem
     {
-        [SerializeField] private Camera     _mainCamera;
-        [SerializeField] private float      _cellSize      = 1f;
-        [SerializeField] private Vector2    _boardOrigin;
-        [SerializeField] private GameObject _stonePrefab;
-        [SerializeField] private Vector3    _spawnPosition = new Vector3(-5f, 0f, 0f);
+        [SerializeField] private Camera  _mainCamera;
+        [SerializeField] private float   _cellSize = 1f;
+        [SerializeField] private Vector2 _boardOrigin;
 
         private DraggableStone _stone;
         private bool           _actionConfirmed;
         private int            _actionX;
         private int            _actionY;
 
-        private void Start()
+        public void Init(DraggableStone stone)
         {
-            SpawnStone(Player.Black);
-        }
-
-        public void SetCurrentPlayer(Player player)
-        {
-            if (_stone == null) return;
-            _stone.GetComponent<SpriteRenderer>().color =
-                player == Player.Black ? Color.black : Color.white;
-            _stone.ResetPosition();
+            _stone = stone;
         }
 
         // DraggableStone から呼ばれる
@@ -61,13 +51,5 @@ namespace Othello.Systems
             }
         }
 
-        private void SpawnStone(Player player)
-        {
-            var go = Instantiate(_stonePrefab, _spawnPosition, Quaternion.identity);
-            go.GetComponent<SpriteRenderer>().color =
-                player == Player.Black ? Color.black : Color.white;
-            _stone = go.AddComponent<DraggableStone>();
-            _stone.Init(this, _spawnPosition);
-        }
     }
 }
