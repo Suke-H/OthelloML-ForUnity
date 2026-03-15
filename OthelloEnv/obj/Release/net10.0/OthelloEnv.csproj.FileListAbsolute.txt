@@ -1,0 +1,12 @@
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\bin\Release\net10.0\OthelloEnv.deps.json
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\bin\Release\net10.0\OthelloEnv.dll
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\bin\Release\net10.0\OthelloEnv.pdb
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\OthelloEnv.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\OthelloEnv.AssemblyInfoInputs.cache
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\OthelloEnv.AssemblyInfo.cs
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\OthelloEnv.csproj.CoreCompileInputs.cache
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\OthelloEnv.sourcelink.json
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\OthelloEnv.dll
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\refint\OthelloEnv.dll
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\OthelloEnv.pdb
+C:\Users\suke0\Desktop\craft\UnityProject\2026\OthelloML\OthelloEnv\obj\Release\net10.0\ref\OthelloEnv.dll

@@ -8,5 +8,4 @@ dotnet new classlib -n OthelloEnv --no-restore
 
 cd OthelloEnv
 dotnet build -c Release
-# dotnet build OthelloEnv.csproj -c Release
 ```

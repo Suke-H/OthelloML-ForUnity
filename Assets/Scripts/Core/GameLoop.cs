@@ -6,11 +6,12 @@ namespace Othello.Core
 {
     public class GameLoop : MonoBehaviour
     {
-        public enum InputMode { GUI, CLI }
+        public enum InputMode { GUI, CLI, AI }
 
         [SerializeField] private InputMode      _inputMode = InputMode.GUI;
         [SerializeField] private GUIInputSystem _guiInput;
         [SerializeField] private CLIInputSystem _cliInput;
+        [SerializeField] private AIInputSystem  _aiInput;
         [SerializeField] private DrawSystem     _draw;
 
         private EnvState     _envState;
@@ -19,7 +20,14 @@ namespace Othello.Core
 
         private void Start()
         {
-            _input      = _inputMode == InputMode.GUI ? _guiInput : _cliInput;
+            _input      = _inputMode switch
+            {
+                InputMode.GUI => _guiInput,
+                InputMode.CLI => _cliInput,
+                InputMode.AI  => _aiInput,
+                _             => _guiInput
+            };
+
             _envState   = EnvSystem.CreateInitial();
             _inputState = new InputState();
 
@@ -34,7 +42,9 @@ namespace Othello.Core
                 _draw.OperationStone.gameObject.SetActive(false);
             }
 
-            
+            if (_inputMode == InputMode.AI)
+                _aiInput.StartPredict(_envState);
+
             Debug.Log($"[GameLoop] 開始。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(_envState.LegalMoves)}");
         }
 
@@ -47,11 +57,15 @@ namespace Othello.Core
                 Debug.Log($"[GameLoop] アクション ({_inputState.ActionX},{_inputState.ActionY})");
                 var nextEnvState = EnvSystem.Apply(_envState, _inputState.ActionX, _inputState.ActionY);
                 _envState = nextEnvState;
+
                 if (nextEnvState.IsActionSuccess)
                 {
                     Debug.Log($"[GameLoop] 着手成功。手番={_envState.CurrentTurn}、合法手={LegalMovesToString(_envState.LegalMoves)}");
                     var switchViewState = UpdateSystem.CreateViewState(_envState, _inputState);
                     _draw.RenderForSwitchTurn(switchViewState);
+
+                    if (_inputMode == InputMode.AI)
+                        _aiInput.StartPredict(_envState);
                 }
                 else
                 {

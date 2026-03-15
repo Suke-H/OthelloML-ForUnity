@@ -41,6 +41,7 @@
 ExportedObj/
 .consulo/
 *.csproj
+!OthelloEnv/OthelloEnv.csproj
 *.unityproj
 *.sln
 *.suo
@@ -101,3 +102,4 @@ InitTestScene*.unity*
 .claude/
 .vscode/
 .uloop/
+__pycache__/
