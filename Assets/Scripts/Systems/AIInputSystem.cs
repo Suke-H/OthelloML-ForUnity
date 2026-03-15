@@ -1,7 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Othello.States;
-using Unity.Sentis;
+using Unity.InferenceEngine;
 using UnityEngine;
 
 namespace Othello.Systems
@@ -45,23 +45,20 @@ namespace Othello.Systems
         {
             _predicting = true;
 
-            var thinkDelay  = UniTask.Delay(TimeSpan.FromSeconds(_minThinkSeconds), cancellationToken: ct);
-            var predictTask = UniTask.RunOnThreadPool(() => Predict(env), cancellationToken: ct);
+            await UniTask.Delay(TimeSpan.FromSeconds(_minThinkSeconds), cancellationToken: ct);
+            (_resultX, _resultY) = Predict(env);
 
-            await UniTask.WhenAll(thinkDelay, predictTask);
-
-            (_resultX, _resultY) = predictTask.GetResult();
-            _resultReady         = true;
-            _predicting          = false;
+            _resultReady = true;
+            _predicting  = false;
         }
 
         private (int x, int y) Predict(EnvState env)
         {
-            using var input  = BoardToTensor(env);
+            using var input    = BoardToTensor(env);
             _worker.Schedule(input);
-            using var output = _worker.PeekOutput() as Tensor<float>;
-            output.CompleteOperationsAndDownload();
-            return ArgmaxLegal(output, env.LegalMoves);
+            using var output   = _worker.PeekOutput() as Tensor<float>;
+            using var download = output.ReadbackAndClone();
+            return ArgmaxLegal(download, env.LegalMoves);
         }
 
         private Tensor<float> BoardToTensor(EnvState env)

@@ -787,6 +787,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &777994477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777994478}
+  - component: {fileID: 777994479}
+  m_Layer: 0
+  m_Name: AI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777994478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777994477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1085057188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &777994479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777994477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2b31312098881489bcb23bf4ad39cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _modelAsset: {fileID: 5022602860645237092, guid: 956a4d4848457804c8e57bc0457e3cb8, type: 3}
+  _minThinkSeconds: 0.5
 --- !u!1 &1037083244
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1037083245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -996,6 +1042,7 @@ Transform:
   m_Children:
   - {fileID: 1200742149}
   - {fileID: 2086027199}
+  - {fileID: 777994478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1196342645
@@ -1151,9 +1198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4d5e1f249a1ee40b22fda0b0cb37f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputMode: 0
+  _inputMode: 2
   _guiInput: {fileID: 2086027200}
   _cliInput: {fileID: 1200742148}
+  _aiInput: {fileID: 777994479}
   _draw: {fileID: 2118477333}
 --- !u!4 &1783083419
 Transform:
