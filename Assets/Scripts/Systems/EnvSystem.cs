@@ -1,5 +1,4 @@
 using Othello.States;
-using UnityEngine;
 
 namespace Othello.Systems
 {
@@ -36,7 +35,6 @@ namespace Othello.Systems
             var nextLegal = ComputeLegalMoves(next.Board, nextTurn);
             var nextState = new EnvState(isActionSuccess: true, next.Board, nextTurn, nextLegal);
 
-            LogTurn(nextState, x, y);
             return nextState;
         }
 
@@ -90,17 +88,5 @@ namespace Othello.Systems
             return board[nx, ny] == stone ? count : 0;
         }
 
-        private static void LogTurn(EnvState state, int actionX, int actionY)
-        {
-            Debug.Log($"[Turn確定] action({actionX},{actionY})");
-            Debug.Log($"[EnvState] Turn={state.CurrentTurn}");
-            // for (int y = 7; y >= 0; y--)
-            // {
-            //     var row = "";
-            //     for (int x = 0; x < 8; x++)
-            //         row += state.Board[x, y] switch { 1 => "●", 2 => "○", _ => "・" };
-            //     Debug.Log(row);
-            // }
-        }
     }
 }

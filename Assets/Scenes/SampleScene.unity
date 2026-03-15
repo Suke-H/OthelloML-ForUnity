@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4d5e1f249a1ee40b22fda0b0cb37f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputMode: 1
+  _inputMode: 0
   _guiInput: {fileID: 2086027200}
   _cliInput: {fileID: 1200742148}
   _draw: {fileID: 2118477333}
