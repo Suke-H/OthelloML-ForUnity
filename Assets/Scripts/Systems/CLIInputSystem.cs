@@ -14,13 +14,7 @@ namespace Othello.Systems
 
         private void Start()
         {
-            if (_inputField == null)
-                _inputField = FindFirstObjectByType<TMP_InputField>();
-
-            if (_inputField != null)
-                _inputField.onEndEdit.AddListener(SubmitCommand);
-            else
-                Debug.LogError("[CLIInputSystem] TMP_InputField が見つかりません");
+            _inputField.onEndEdit.AddListener(SubmitCommand);
         }
 
         public void SubmitCommand(string input)
